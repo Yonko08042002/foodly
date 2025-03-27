@@ -45,7 +45,6 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginSchema) => {
     try {
-      setIsLoading(true)
       const signInResponse = await signIn('credentials', {
         email: data.email,
         password: data.password,
