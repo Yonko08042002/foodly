@@ -27,7 +27,6 @@ export default function LoginForm() {
   const { isOpen, onOpenChange } = useDisclosure({ defaultOpen: true })
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/'
-  const [isLoading, setIsLoading] = useState(false)
 
   const [isForgotOpen, setIsForgotOpen] = useState(false)
   const {
@@ -63,8 +62,6 @@ export default function LoginForm() {
       if (error instanceof Error) {
         toast.error(error.message)
       }
-    } finally {
-      setIsLoading(false)
     }
   }
 
