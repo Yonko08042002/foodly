@@ -1,9 +1,8 @@
 'use client'
 
 import { InputPassword } from '@/shared/components/atoms'
-import { CODE_STATUS, MESSAGE_STATUS, ROUTES } from '@/shared/constant'
+import { MESSAGE_STATUS, ROUTES } from '@/shared/constant'
 import { loginSchema, LoginSchema } from '@/shared/helpers/schemas/authSchema'
-import apiClient from '@/shared/libs/axios'
 
 import {
   Modal,
@@ -43,27 +42,24 @@ export default function LoginForm() {
   const router = useRouter()
 
   const onSubmit = async (data: LoginSchema) => {
-    try {
-      const signInResponse = await signIn('credentials', {
-        email: data.email,
-        password: data.password,
-        organization_code: data.organization_code,
-        redirect: false,
-      })
-      console.log('signInResponse:', signInResponse)
-
-      if (signInResponse?.error) {
-        toast.error(`ddddd,${MESSAGE_STATUS.LOGIN_FAILED}`)
-      }
+    const signInResponse = await signIn('credentials', {
+      email: data.email,
+      password: data.password,
+      organization_code: data.organization_code,
+      redirect: false,
+    })
+    if (signInResponse?.error) {
+      toast.error(`ddddd,${MESSAGE_STATUS.LOGIN_FAILED}: ${signInResponse.error}`)
+    } else {
       toast.success(MESSAGE_STATUS.LOGIN_SUCCESS)
       // reset()
       router.push(callbackUrl)
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message)
-      }
     }
   }
+  console.log('secret', process.env.NEXTAUTH_SECRET)
+  console.log('secret', process.env.NEXTAUTH_URL)
+  console.log('secret', process.env.APP_API_BASE_URL)
+
 
   return (
     <div>
