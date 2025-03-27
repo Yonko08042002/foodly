@@ -42,7 +42,7 @@ export default withAuth(
           return false
         }
 
-        return true
+        return !!token
       },
     },
   },
