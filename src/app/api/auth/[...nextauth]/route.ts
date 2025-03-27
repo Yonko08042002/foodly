@@ -16,7 +16,7 @@ const handler = NextAuth({
           if (!credentials) {
             throw new Error('Missing credentials')
           }
-    
+
           return await loginUser(credentials as LoginCredentials)
         } catch (error) {
           if (error instanceof Error) {
@@ -24,7 +24,6 @@ const handler = NextAuth({
           }
           throw new Error('Login failed')
         }
-        
       },
     }),
   ],
@@ -58,7 +57,6 @@ const handler = NextAuth({
     signIn: '/login',
   },
   secret: process.env.NEXTAUTH_SECRET,
-  
 })
 
 export { handler as GET, handler as POST }
