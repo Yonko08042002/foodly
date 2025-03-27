@@ -54,6 +54,7 @@ export const loginUser = async (credentials: LoginCredentials) => {
 
     return null
   } catch (error) {
+    console.log('error', error)
     if (error instanceof Error) {
       throw new Error(error.message || 'Login failed')
     }
