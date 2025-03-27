@@ -11,13 +11,16 @@ const handler = NextAuth({
         password: { label: 'Password', type: 'password' },
         organization_code: { label: 'Organization Code', type: 'text' },
       },
+
       async authorize(credentials) {
+        console.log('Received credentials:', credentials)
         try {
           if (!credentials) {
             throw new Error('Missing credentials')
           }
-
-          return await loginUser(credentials as LoginCredentials)
+          const user = await loginUser(credentials as LoginCredentials)
+          console.log('User after login:', user)
+          return user
         } catch (error) {
           if (error instanceof Error) {
             throw new Error(error.message || 'Login failed')
@@ -39,6 +42,7 @@ const handler = NextAuth({
         token.iat = user.iat
         token.exp = user.exp
       }
+      console.log('JWT Token:', token)
       return token
     },
     async session({ session, token }) {
