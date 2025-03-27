@@ -43,21 +43,19 @@ export default function LoginForm() {
   const router = useRouter()
 
   const onSubmit = async (data: LoginSchema) => {
-    const response = await apiClient.post('/auth/sign-in', data)
-    if (response.status === CODE_STATUS.CREATED) {
-      const signInResponse = await signIn('credentials', {
-        email: data.email,
-        password: data.password,
-        organization_code: data.organization_code,
-        redirect: false,
-      })
-      if (signInResponse?.error) {
-        toast.error(MESSAGE_STATUS.LOGIN_FAILED + signInResponse.error)
-      } else {
-        toast.success(MESSAGE_STATUS.LOGIN_SUCCESS)
-        // reset()
-        router.push(callbackUrl)
-      }
+    const signInResponse = await signIn('credentials', {
+      email: data.email,
+      password: data.password,
+      organization_code: data.organization_code,
+      redirect: false,
+    })
+    console.log('signInResponse:', signInResponse)
+    if (signInResponse?.error) {
+      toast.error(`ddddd,${MESSAGE_STATUS.LOGIN_FAILED}`)
+    } else {
+      toast.success(MESSAGE_STATUS.LOGIN_SUCCESS)
+      // reset()
+      router.push(callbackUrl)
     }
   }
 
