@@ -40,7 +40,8 @@ export const loginUser = async (credentials: LoginCredentials) => {
   console.log('credentials', credentials)
   try {
     const { data } = await apiClient.post('/auth/sign-in', credentials)
-
+    console.log('data từ api', data)
+    console.log('token từi api', data.access_token)
     if (data.access_token) {
       return {
         id: data.user_id,
