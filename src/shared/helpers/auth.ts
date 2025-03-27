@@ -43,6 +43,10 @@ export const loginUser = async (credentials: LoginCredentials) => {
         email: credentials.email,
         accessToken: data.access_token,
         refreshToken: data.refresh_token,
+        organizationId: data.organization_id,
+        type: data.type,
+        iat: data.iat,
+        exp: data.exp,
       }
     }
 

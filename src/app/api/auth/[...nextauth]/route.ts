@@ -32,6 +32,10 @@ const handler = NextAuth({
         token.id = user.id
         token.accessToken = user.accessToken
         token.refreshToken = user.refreshToken
+        token.organizationId = user.organizationId
+        token.type = user.type
+        token.iat = user.iat
+        token.exp = user.exp
       }
       return token
     },
@@ -39,6 +43,11 @@ const handler = NextAuth({
       session.user.id = token.id
       session.user.accessToken = token.accessToken
       session.user.refreshToken = token.refreshToken
+      session.user.organizationId = token.organizationId
+      session.user.type = token.type
+      session.user.iat = token.iat
+      session.user.exp = token.exp
+
       return session
     },
   },
