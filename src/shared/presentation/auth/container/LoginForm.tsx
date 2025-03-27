@@ -27,6 +27,7 @@ export default function LoginForm() {
   const { isOpen, onOpenChange } = useDisclosure({ defaultOpen: true })
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/'
+  const [isLoading, setIsLoading] = useState(false)
 
   const [isForgotOpen, setIsForgotOpen] = useState(false)
   const {
@@ -43,19 +44,28 @@ export default function LoginForm() {
   const router = useRouter()
 
   const onSubmit = async (data: LoginSchema) => {
-    const signInResponse = await signIn('credentials', {
-      email: data.email,
-      password: data.password,
-      organization_code: data.organization_code,
-      redirect: false,
-    })
-    console.log('signInResponse:', signInResponse)
-    if (signInResponse?.error) {
-      toast.error(`ddddd,${MESSAGE_STATUS.LOGIN_FAILED}`)
-    } else {
+    try {
+      setIsLoading(true)
+      const signInResponse = await signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        organization_code: data.organization_code,
+        redirect: false,
+      })
+      console.log('signInResponse:', signInResponse)
+
+      if (signInResponse?.error) {
+        toast.error(`ddddd,${MESSAGE_STATUS.LOGIN_FAILED}`)
+      }
       toast.success(MESSAGE_STATUS.LOGIN_SUCCESS)
       // reset()
       router.push(callbackUrl)
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message)
+      }
+    } finally {
+      setIsLoading(false)
     }
   }
 
