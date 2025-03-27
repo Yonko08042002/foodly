@@ -56,9 +56,7 @@ export default function LoginForm() {
       router.push(callbackUrl)
     }
   }
-  console.log('secret', process.env.NEXTAUTH_SECRET)
-  console.log('secret', process.env.NEXTAUTH_URL)
-  console.log('secret', process.env.APP_API_BASE_URL)
+
 
   return (
     <div>
