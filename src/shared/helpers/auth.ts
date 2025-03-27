@@ -39,9 +39,23 @@ export const loginUser = async (credentials: LoginCredentials) => {
   console.log('Next auth url', process.env.NEXT_PUBLIC_APP_URL)
   console.log('api url', process.env.APP_API_BASE_URL)
   try {
-    const { data } = await apiClient.post('/auth/sign-in', credentials)
-    console.log('data từ api', data)
-    console.log('token từi api', data.access_token)
+    const response = await fetch(`https://uittraining-api.cloud.runsystem.site/api/auth/sign-in`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    })
+    const responseText = await response.text()
+    console.log('Raw Response:', responseText)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    console.log('Dữ liệu từ API:', data)
+
     if (data.access_token) {
       return {
         user_id: data.user_id,
