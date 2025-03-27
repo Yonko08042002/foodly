@@ -43,7 +43,6 @@ export default function RegisterForm() {
     const isValid = await trigger()
     if (!isValid) return
     const response = await apiClient.post('/auth/sign-up', data)
-    // const response = await axios.post('/api/auth/register', data)
     if (response.status === CODE_STATUS.CREATED) {
       reset()
       toast.success(MESSAGE_STATUS.REGISTER_SUCCESS)
