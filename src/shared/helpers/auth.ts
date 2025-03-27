@@ -1,6 +1,34 @@
 import apiClient from '@/shared/libs/axios'
 import { AxiosError } from 'axios'
 
+export interface RegisterCredentials {
+  email: string
+  password: string
+  confirm_password: string
+  display_name: string
+  organization_code: string
+}
+export const registerUser = async (credentials: RegisterCredentials) => {
+  try {
+    const { data } = await apiClient.post('/auth/sign-up', credentials)
+
+    if (data.access_token) {
+      return {
+        id: data.user_id,
+        email: credentials.email,
+        accessToken: data.access_token,
+        refreshToken: data.refresh_token,
+      }
+    }
+    return null
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message || 'Registration failed')
+    }
+    return null
+  }
+}
+
 export interface LoginCredentials {
   email: string
   password: string
@@ -35,5 +63,6 @@ export const loginUser = async (credentials: LoginCredentials) => {
     } else {
       console.error('Lỗi không xác định:', error)
     }
+    return null
   }
 }
