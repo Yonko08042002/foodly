@@ -18,7 +18,7 @@ export default withAuth(
       if (pathname.startsWith(ROUTES.LOGIN) || pathname.startsWith(ROUTES.REGISTER)) {
         return NextResponse.redirect(new URL('/', req.url))
       }
-      return intlMiddleware(req)||NextResponse.next()
+      return intlMiddleware(req) || NextResponse.next()
     }
 
     if (protectedRoutes.some(route => pathname.startsWith(route))) {
@@ -30,7 +30,7 @@ export default withAuth(
       )
     }
 
-    return intlMiddleware(req)||NextResponse.next()
+    return intlMiddleware(req) || NextResponse.next()
   },
   {
     callbacks: {
