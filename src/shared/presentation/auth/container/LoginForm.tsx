@@ -60,7 +60,6 @@ export default function LoginForm() {
   console.log('secret', process.env.NEXTAUTH_URL)
   console.log('secret', process.env.APP_API_BASE_URL)
 
-
   return (
     <div>
       {' '}
