@@ -34,9 +34,9 @@ export interface LoginCredentials {
   organization_code: string
 }
 export const loginUser = async (credentials: LoginCredentials) => {
-  console.log('secret', process.env.NEXTAUTH_SECRET)
-  console.log('secret', process.env.NEXTAUTH_URL)
-  console.log('secret', process.env.APP_API_BASE_URL)
+  console.log('secret1', process.env.NEXTAUTH_SECRET)
+  console.log('secret1', process.env.NEXTAUTH_URL)
+  console.log('secret1', process.env.APP_API_BASE_URL)
   try {
     const { data } = await apiClient.post('/auth/sign-in', credentials)
 
