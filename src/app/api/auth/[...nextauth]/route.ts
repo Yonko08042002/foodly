@@ -53,7 +53,7 @@ const handler = NextAuth({
       session.user.type = token.type
       session.user.iat = token.iat
       session.user.exp = token.exp
-
+      console.log('Session:', session)
       return session
     },
   },
