@@ -34,6 +34,7 @@ const handler = NextAuth({
           }
           return null
         } catch (error) {
+          console.log('Lỗi gì gì đây:', error)
           if (error instanceof Error) {
             throw new Error(error.message || 'Login failed')
           }
