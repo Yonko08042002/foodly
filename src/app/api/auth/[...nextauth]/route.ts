@@ -16,6 +16,9 @@ const handler = NextAuth({
           if (!credentials) {
             throw new Error('Missing credentials')
           }
+          console.log('secret1', process.env.NEXTAUTH_SECRET)
+          console.log('secret1', process.env.NEXTAUTH_URL)
+          console.log('secret1', process.env.APP_API_BASE_URL)
           return await loginUser(credentials as LoginCredentials)
         } catch (error) {
           if (error instanceof Error) {
@@ -26,6 +29,7 @@ const handler = NextAuth({
       },
     }),
   ],
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
