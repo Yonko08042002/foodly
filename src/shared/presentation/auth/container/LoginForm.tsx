@@ -56,6 +56,7 @@ export default function LoginForm() {
       router.push(callbackUrl)
     }
   }
+  console.log('secret', process.env.NEXT_PUBLIC_APP_URL)
 
   return (
     <div>
