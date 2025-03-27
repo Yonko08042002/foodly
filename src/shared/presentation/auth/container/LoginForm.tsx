@@ -22,7 +22,10 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import ForgotPasswordModal from '@/shared/presentation/auth/components/ForgotPasswordModal'
+import { useAuth } from '@/shared/hooks/useAuth'
 export default function LoginForm() {
+  const { session } = useAuth()
+  console.log(session)
   const { isOpen, onOpenChange } = useDisclosure({ defaultOpen: true })
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/'
