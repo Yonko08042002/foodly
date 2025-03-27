@@ -20,7 +20,19 @@ const handler = NextAuth({
           }
           const user = await loginUser(credentials as LoginCredentials)
           console.log('User after login:', user)
-          return user
+          if (user) {
+            return {
+              id: user.user_id,
+              user_id: user.user_id,
+              access_token: user.access_token,
+              refresh_token: user.refresh_token,
+              organization_id: user.organization_id,
+              type: user.type,
+              iat: user.iat,
+              exp: user.exp,
+            }
+          }
+          return null
         } catch (error) {
           if (error instanceof Error) {
             throw new Error(error.message || 'Login failed')
@@ -34,10 +46,10 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id
-        token.accessToken = user.accessToken
-        token.refreshToken = user.refreshToken
-        token.organizationId = user.organizationId
+        token.user_id = user.user_id
+        token.accessToken = user.access_token
+        token.refreshToken = user.refresh_token
+        token.organization_id = user.organization_id
         token.type = user.type
         token.iat = user.iat
         token.exp = user.exp
@@ -46,10 +58,10 @@ const handler = NextAuth({
       return token
     },
     async session({ session, token }) {
-      session.user.id = token.id
-      session.user.accessToken = token.accessToken
-      session.user.refreshToken = token.refreshToken
-      session.user.organizationId = token.organizationId
+      session.user.user_id = token.user_id
+      session.user.access_token = token.access_token
+      session.user.refresh_token = token.refresh_token
+      session.user.organization_id = token.organization_id
       session.user.type = token.type
       session.user.iat = token.iat
       session.user.exp = token.exp

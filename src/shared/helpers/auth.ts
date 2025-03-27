@@ -43,10 +43,10 @@ export const loginUser = async (credentials: LoginCredentials) => {
     console.log('token từi api', data.access_token)
     if (data.access_token) {
       return {
-        id: data.user_id,
-        accessToken: data.access_token,
-        refreshToken: data.refresh_token,
-        organizationId: data.organization_id,
+        user_id: data.user_id,
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+        organization_id: data.organization_id,
         type: data.type,
         iat: data.iat,
         exp: data.exp,

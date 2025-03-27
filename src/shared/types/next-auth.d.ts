@@ -3,10 +3,10 @@ import { DefaultSession } from 'next-auth'
 declare module 'next-auth' {
   interface Session {
     user: {
-      id: string
-      accessToken: string
-      refreshToken: string
-      organizationId: string
+      user_id: string
+      access_token: string
+      refresh_token: string
+      organization_id: string
       type: string
       iat: number
       exp: number
@@ -14,10 +14,10 @@ declare module 'next-auth' {
   }
 
   interface User {
-    id: string
-    accessToken: string
-    refreshToken: string
-    organizationId: string
+    user_id: string
+    access_token: string
+    refresh_token: string
+    organization_id: string
     type: string
     iat: number
     exp: number
@@ -26,10 +26,10 @@ declare module 'next-auth' {
 
 declare module 'next-auth/jwt' {
   interface JWT {
-    id: string
-    accessToken: string
-    refreshToken: string
-    organizationId: string
+    user_id: string
+    access_token: string
+    refresh_token: string
+    organization_id: string
     type: string
     iat: number
     exp: number
