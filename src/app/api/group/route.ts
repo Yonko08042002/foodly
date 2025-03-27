@@ -9,7 +9,6 @@ export async function GET(req: Request) {
     const sort = searchParams.get('sort') || 'code:asc'
     const isOnline = searchParams.get('is_online') || '0'
     const isMine = searchParams.get('is_mine') || '0'
-
     const { data } = await apiClient.get('/groups', {
       params: { page: pageParam, size, sort, is_online: isOnline, is_mine: isMine },
     })

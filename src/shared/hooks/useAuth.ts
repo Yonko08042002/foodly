@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getUserInfo, updateUserInfo } from '@/shared/apis/auth'
 import { toast } from 'sonner'
 import { useSession } from 'next-auth/react'
+
 export const useUserInfo = () => {
   return useQuery({
     queryKey: ['user-info'],
@@ -30,5 +31,6 @@ export const useUserMutation = (
 
 export function useAuth() {
   const { data: session, status } = useSession()
+  console.log('hello', session)
   return { session, status }
 }

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Group, SearchGroupParams } from '@/shared/types/group'
 import GroupCard from './GroupCard'
 import { Skeleton, Spinner } from '@heroui/react'
-import { useQueryGroups } from '@/shared/hooks/useGroups'
+import { useInfiniteGroups, useQueryGroups } from '@/shared/hooks/useGroups'
 import { isTextMatching } from '@/shared/helpers/validation'
 
 export default function GroupList({
@@ -12,7 +12,7 @@ export default function GroupList({
   params: SearchGroupParams
   searchTerm: string
 }) {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useQueryGroups(params)
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useInfiniteGroups()
   const groupOrders: Group[] =
     data?.pages.flatMap(page =>
       page.groups.filter(

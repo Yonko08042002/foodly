@@ -48,8 +48,8 @@ const handler = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.user_id = user.user_id
-        token.accessToken = user.access_token
-        token.refreshToken = user.refresh_token
+        token.access_token = user.access_token
+        token.refresh_token = user.refresh_token
         token.organization_id = user.organization_id
         token.type = user.type
         token.iat = user.iat

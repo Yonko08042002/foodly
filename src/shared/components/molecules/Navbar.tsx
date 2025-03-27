@@ -47,7 +47,7 @@ export default function Navbar() {
   const t = useTranslations('MenuNavbar')
 
   const navItemsToShow = session ? navItems : navItems.filter(item => item.path === '/')
-
+  console.log(session)
   return (
     <div className="hidden h-[60vh] flex-col justify-between rounded-lg border-gray-200 bg-white p-4 md:flex xl:w-1/5">
       <nav className="flex flex-row gap-x-2 md:flex-col md:space-y-4">
