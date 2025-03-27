@@ -1,0 +1,27 @@
+{
+  "LocaleSwitcher": {
+    "locale": "{locale, select, vi { Vietnamese } en { English } other {Unbekannt}}"
+  },
+  "MenuNavbar": {
+    "home": "Home",
+    "payment": " Payment",
+    "my_group": "My Group",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "PublicButton": {
+    "Create Group": "Create Group",
+    "Join Group": "Join Group",
+    "Search": "Search",
+    "Order": "Order",
+    "Detail": "Detail",
+    "Confirm": "Confirm",
+    "Cancel": "Cancel",
+    "Save": "Save",
+    "Delete": "Delete",
+    "Edit": "Edit",
+    "Add": "Add",
+    "Close": "Close"
+  }
+}

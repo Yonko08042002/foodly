@@ -1,0 +1,5 @@
+export * from '@/shared/constant/config'
+export * from '@/shared/constant/message'
+export * from '@/shared/constant/route'
+export * from '@/shared/constant/regex'
+export * from '@/shared/constant/label'

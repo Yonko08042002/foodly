@@ -1,0 +1,28 @@
+{
+  "LocaleSwitcher": {
+    "locale": "{locale, select, vi { Tiếng Việt } en { Tiêng Anh } other {Unbekannt}}"
+  },
+
+"MenuNavbar": {
+  "home": "Trang chủ",
+  "payment": "Thanh toán",
+  "my_group": "Nhóm của tôi",
+  "profile": "Hồ sơ",
+  "logout": "Đăng xuất",
+  "login": "Đăng nhập"
+},
+  "PublicButton": {
+    "Create Group": "Tạo nhóm",
+    "Join Group": "Tham gia nhóm",
+    "Search": "Tìm kiếm",
+    "Order": "Đặt hàng",
+    "Detail": "Chi tiết",
+    "Confirm": "Xác nhận",
+    "Cancel": "Hủy bỏ",
+    "Save": "Lưu",
+    "Delete": "Xóa",
+    "Edit": "Chỉnh sửa",
+    "Add": "Thêm",
+    "Close": "Đóng"
+  }
+}
