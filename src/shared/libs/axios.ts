@@ -7,7 +7,12 @@ import { getSession } from 'next-auth/react'
 
 const apiClient = axios.create({
   baseURL: process.env.APP_API_BASE_URL || 'https://uittraining-api.cloud.runsystem.site/api/',
-  headers: { 'Content-Type': 'application/json' },
+  headers: {
+    'Content-Type': 'application/json',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+    Origin: process.env.NEXT_PUBLIC_APP_URL,
+    Referer: process.env.NEXT_PUBLIC_APP_URL,
+  },
 })
 apiClient.interceptors.request.use(async config => {
   const session = await getSession()
