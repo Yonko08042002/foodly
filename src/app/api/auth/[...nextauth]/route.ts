@@ -12,7 +12,8 @@ const handler = NextAuth({
         organization_code: { label: 'Organization Code', type: 'text' },
       },
 
-      async authorize(credentials) {
+      async authorize(credentials, req) {
+        console.log('Headers:', req?.headers)
         console.log('Received credentials:', credentials)
         try {
           if (!credentials) {
