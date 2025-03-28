@@ -14,6 +14,13 @@ export default withAuth(
     let { pathname } = req.nextUrl
     pathname = pathname.replace(GET_PATH_NAME_REGEX, '$1')
 
+    console.log('Middleware triggered:', pathname) // Log request path để debug
+
+    // ✅ Bỏ qua middleware nếu request là API
+    if (pathname.startsWith('/api/')) {
+      console.log('Skipping middleware for API route:', pathname)
+      return NextResponse.next()
+    }
     if (req.nextauth.token) {
       if (pathname.startsWith(ROUTES.LOGIN) || pathname.startsWith(ROUTES.REGISTER)) {
         return NextResponse.redirect(new URL('/', req.url))

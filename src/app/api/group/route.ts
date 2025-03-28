@@ -13,19 +13,8 @@ export async function GET(req: Request) {
       params: { page: pageParam, size, sort, is_online: isOnline, is_mine: isMine },
     })
 
-    const response = NextResponse.json(data, { status: 200 })
-    response.headers.set('Access-Control-Allow-Origin', '*')
-    response.headers.set('Access-Control-Allow-Methods', 'GET,OPTIONS')
-    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    return response
+    return NextResponse.json(data, { status: 200 })
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch groups' }, { status: 500 })
   }
-}
-export function OPTIONS() {
-  const response = new NextResponse(null, { status: 204 })
-  response.headers.set('Access-Control-Allow-Origin', '*')
-  response.headers.set('Access-Control-Allow-Methods', 'GET,OPTIONS')
-  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-  return response
 }
