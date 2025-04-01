@@ -47,13 +47,11 @@ export const loginUser = async (credentials: LoginCredentials) => {
         headers: {
           'Content-Type': 'application/json',
           'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-          Origin: process.env.NEXT_PUBLIC_APP_URL,
-          Referer: process.env.NEXT_PUBLIC_APP_URL,
         },
       },
     )
 
-    console.log('Phản hồi từ API:', response.data)
+     const userData = response.data
 
     const data = response.data
     if (data.access_token) {

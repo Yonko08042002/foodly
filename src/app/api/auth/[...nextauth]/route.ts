@@ -1,6 +1,5 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { LoginCredentials, loginUser } from '@/shared/helpers/auth'
 
 const handler = NextAuth({
   providers: [
@@ -10,36 +9,31 @@ const handler = NextAuth({
         email: { label: 'Email', type: 'email', placeholder: 'you@example.com' },
         password: { label: 'Password', type: 'password' },
         organization_code: { label: 'Organization Code', type: 'text' },
+        access_token: { label: 'Access Token', type: 'text' },
+        refresh_token: { label: 'Refresh Token', type: 'text' },
+        user_id: { label: 'User ID', type: 'text' },
+        organization_id: { label: 'Organization ID', type: 'text' },
+        type: { label: 'Type', type: 'text' },
+        iat: { label: 'IAT', type: 'text' },
+        exp: { label: 'EXP', type: 'text' },
       },
 
-      async authorize(credentials, req) {
-        console.log('Headers:', req?.headers)
+      async authorize(credentials) {
         console.log('Received credentials:', credentials)
-        try {
-          if (!credentials) {
-            throw new Error('Missing credentials')
-          }
-          const user = await loginUser(credentials as LoginCredentials)
-          console.log('User after login:', user)
-          if (user) {
-            return {
-              id: user.user_id,
-              user_id: user.user_id,
-              access_token: user.access_token,
-              refresh_token: user.refresh_token,
-              organization_id: user.organization_id,
-              type: user.type,
-              iat: user.iat,
-              exp: user.exp,
-            }
-          }
-          return null
-        } catch (error) {
-          console.log('Lỗi gì gì đây:', error)
-          if (error instanceof Error) {
-            throw new Error(error.message || 'Login failed')
-          }
-          throw new Error('Login failed')
+
+        if (!credentials?.access_token) {
+          throw new Error('Login failed: No access token')
+        }
+
+        return {
+          id: credentials.user_id,
+          user_id: credentials.user_id,
+          access_token: credentials.access_token,
+          refresh_token: credentials.refresh_token,
+          organization_id: credentials.organization_id,
+          type: credentials.type,
+          iat: Number(credentials.iat),
+          exp: Number(credentials.exp),
         }
       },
     }),
@@ -56,18 +50,18 @@ const handler = NextAuth({
         token.iat = user.iat
         token.exp = user.exp
       }
-      console.log('JWT Token:', token)
       return token
     },
     async session({ session, token }) {
-      session.user.user_id = token.user_id
-      session.user.access_token = token.access_token
-      session.user.refresh_token = token.refresh_token
-      session.user.organization_id = token.organization_id
-      session.user.type = token.type
-      session.user.iat = token.iat
-      session.user.exp = token.exp
-      console.log('Session:', session)
+      session.user = {
+        user_id: token.user_id,
+        access_token: token.access_token,
+        refresh_token: token.refresh_token,
+        organization_id: token.organization_id,
+        type: token.type,
+        iat: token.iat,
+        exp: token.exp,
+      }
       return session
     },
   },
