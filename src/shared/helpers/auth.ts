@@ -35,6 +35,7 @@ export interface LoginCredentials {
   organization_code: string
 }
 export const loginUser = async (credentials: LoginCredentials) => {
+  'use client'
   console.log('next Auth secret', process.env.NEXTAUTH_SECRET)
   console.log('Next auth url', process.env.NEXT_PUBLIC_APP_URL)
   console.log('api url', process.env.APP_API_BASE_URL)
