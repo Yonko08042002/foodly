@@ -76,6 +76,7 @@ export default function LoginForm() {
       toast.success(MESSAGE_STATUS.LOGIN_SUCCESS)
       router.push(callbackUrl)
     } catch (error) {
+      console.log(error)
       toast.error(`${MESSAGE_STATUS.LOGIN_FAILED}`)
     }
   }

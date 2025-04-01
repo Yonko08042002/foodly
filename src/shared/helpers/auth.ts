@@ -51,8 +51,6 @@ export const loginUser = async (credentials: LoginCredentials) => {
       },
     )
 
-     const userData = response.data
-
     const data = response.data
     if (data.access_token) {
       return {

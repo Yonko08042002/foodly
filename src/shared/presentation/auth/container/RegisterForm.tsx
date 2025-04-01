@@ -20,7 +20,6 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import apiClient from '@/shared/libs/axios'
 import { CODE_STATUS, MESSAGE_STATUS, ROUTES } from '@/shared/constant'
-import axios from 'axios'
 
 export default function RegisterForm() {
   const { isOpen, onOpenChange } = useDisclosure({ defaultOpen: true })

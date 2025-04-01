@@ -2,11 +2,10 @@ import { useEffect, useRef } from 'react'
 import { Group, SearchGroupParams } from '@/shared/types/group'
 import GroupCard from './GroupCard'
 import { Skeleton, Spinner } from '@heroui/react'
-import { useInfiniteGroups, useQueryGroups } from '@/shared/hooks/useGroups'
+import { useInfiniteGroups } from '@/shared/hooks/useGroups'
 import { isTextMatching } from '@/shared/helpers/validation'
 
 export default function GroupList({
-  params,
   searchTerm,
 }: {
   params: SearchGroupParams
