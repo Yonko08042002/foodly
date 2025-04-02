@@ -31,6 +31,5 @@ export const useUserMutation = (
 
 export function useAuth() {
   const { data: session, status } = useSession()
-  console.log('hello', session)
   return { session, status }
 }

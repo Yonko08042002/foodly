@@ -9,7 +9,7 @@ export default function UserMenu() {
 
   return (
     <div className="hidden items-center justify-between gap-2 md:flex">
-      <p className="font-semibold text-white">{session.user?.email}</p>
+      <p className="font-semibold text-white">{session.user?.user_id}</p>
       <Avatar
         className="border-[1px] border-primary"
         src={session.user?.image || configs.background.src}
